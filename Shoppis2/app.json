@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ubolacha.Shoppis"
     },
     "web": {
       "favicon": "./assets/splash.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5621e8e1-8c48-44d0-bf11-d39f044b54f5"
+      }
     }
   }
 }
