@@ -1,22 +1,25 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { CartContext } from "../contexts/CartContext";
 import ItemCard from "../components/ItemCard";
 import CartCard from "../components/CartCard";
+import { useNavigation } from "@react-navigation/native";
 
 const Cart = () => {
     const { cart, getCart } = useContext(CartContext);
+    const navigation = useNavigation<any>();
     console.log(cart)
 
     useEffect(() => {
         getCart()
     }, [])
     return (
-        <FlatList
-                data={cart}
-                renderItem={({ item }) => <CartCard item={item} />}
-                keyExtractor={(item) => item.product.id.toString()}
-            />
+        <><FlatList
+            data={cart}
+            renderItem={({ item }) => <CartCard item={item} />}
+            keyExtractor={(item) => item.product.id.toString()} /><TouchableOpacity onPress={() => navigation.navigate("Payment")} style={styles.checkoutButton}>
+                <Text style={styles.checkoutText}>Pagar </Text>
+            </TouchableOpacity></>
     );
 };
 
@@ -63,5 +66,19 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#4CAF50",
         textAlign: 'center'
+    },
+    checkoutButton: {
+        backgroundColor: "#FF6347",
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        marginHorizontal: 20,
+        marginBottom: 20,
+        alignItems: 'center',
+    },
+    checkoutText: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#FFFFFF",
     },
 });
